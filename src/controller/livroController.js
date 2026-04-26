@@ -1,11 +1,11 @@
-import livro from "../models/Livro";
-import livro from "../models/Livro";
+import livro from "../models/Livro.js";
 
 class livroController {
 
     static async listaLivros(req, res) {
         try {
-            const listaLivros = await livro.find({})
+            const listaLivros = await livro.find()
+            console.log(listaLivros);
             res.status(200).json(listaLivros);
         } catch (error) {
             res.status(500).json({ message: error.message });

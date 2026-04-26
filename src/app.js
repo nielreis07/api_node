@@ -1,15 +1,13 @@
 import express from 'express';
-import connectDataBase from './config/dbConnect.js';
-
-const db = connectDataBase();
-db.then(function () {
-    console.log('Conectado!');
-}).catch(function (err) {
-    console.log('Não conectado')
-});
+import routes from './routes/index.js';
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+routes(app);
 
+app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`);
+});

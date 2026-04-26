@@ -1,19 +1,19 @@
 import mongoose from "mongoose";
-import { autorSchema } from "./Autor.js";
+import connectDataBase from "../config/dbConnect.js";
+
+await connectDataBase();
+
+const db = mongoose.connection;
 
 const livroSchema = new mongoose.Schema({
-    id: { type: mongoose.Schema.Types.ObjectId },
+    _id: { type: mongoose.Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId() },
     titulo: { type: String, required: true },
     editora: { type: String },
     preco: { type: Number },
     pagina: { type: Number },
-    autor: autorSchema
-}, { versionKey: false });
+    autor: { type: mongoose.Schema.Types.ObjectId, ref: "Autor" }
+}, { versionKey: false, collection: "livros" });
 
-const livro = mongoose.model("livros", livroSchema);
+const livro = db.model("Livro", livroSchema);
 
 export default livro;
-
-/*
-Exemplo de como criar um modelo com mongoose |
- */

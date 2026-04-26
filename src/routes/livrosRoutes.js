@@ -1,10 +1,12 @@
 import express from "express";
-import livroController from "../controller/livroController";
+import livroController from "../controller/livroController.js";
 
-const routes = express.Router();
+const livrosRoutes = express.Router();
 
-routes.get("/livros", livroController.listaLivros)
-routes.get("/livros/:id", livroController.obterLivro)
-routes.post("/livros", livroController.cadastrarLivro)
-routes.put("/livros/:id", livroController.atualizarLivro)
-routes.delete("/livros/:id", livroController.deletarLivro)
+livrosRoutes.get("/livros", (req, res) => livroController.listaLivros(req, res))
+livrosRoutes.get("/livros/:id", (req, res) => livroController.obterLivro(req, res))
+livrosRoutes.post("/livros", (req, res) => livroController.cadastrarLivro(req, res))
+livrosRoutes.put("/livros/:id", (req, res) => livroController.atualizarLivro(req, res))
+livrosRoutes.delete("/livros/:id", (req, res) => livroController.deletarLivro(req, res))
+
+export default livrosRoutes;
