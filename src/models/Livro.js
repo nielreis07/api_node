@@ -11,7 +11,6 @@ const livroSchema = new mongoose.Schema({
     editora: { type: String },
     preco: { type: Number },
     pagina: { type: Number },
-    autor: { type: mongoose.Schema.Types.ObjectId, ref: "Autor" }
 }, { versionKey: false, collection: "livros" });
 
 const livro = db.model("Livro", livroSchema);
